@@ -1,0 +1,29 @@
+long long kthsmall(long long A[], long long N, long long k){
+        //for smallest we are going to use max heap
+        priority_queue<long long>maxh;
+        
+        for(long long i=0;i<N;i++){
+            maxh.push(A[i]);
+            if(maxh.size()>k){
+                maxh.pop();
+            }
+        }
+        return maxh.top();
+    }
+
+    long long sumBetweenTwoKth( long long A[], long long N, long long K1, long long K2)
+    {
+        // Your code goes here
+        long long first=kthsmall(A,N,K1);
+        long long second=kthsmall(A,N,K2);
+        
+        //now travesing the whole array 
+        //so as to find numbers in between K1 AND K2
+        long long sum=0;
+        for(long long i=0;i<N;i++){
+            if(A[i]>first && A[i]<second){
+                sum=sum+A[i];
+            }
+        }
+        return sum;
+    }
